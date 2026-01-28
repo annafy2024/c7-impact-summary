@@ -32,6 +32,22 @@
             color: white;
         }
 
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .hero-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 700;
@@ -234,6 +250,11 @@
                 font-size: 1.2rem;
             }
 
+            .hero-image {
+                width: 140px;
+                height: 140px;
+            }
+
             .section-title {
                 font-size: 2rem;
             }
@@ -261,9 +282,14 @@
     <!-- Hero Section -->
     <div class="hero">
         <div class="container">
-            <h1>C7 Scope Change</h1>
-            <p class="subtitle">Anna Feichtner | Solutions Engineer</p>
-            <p class="period">Q4 2025 - Q1 2026</p>
+            <div class="hero-content">
+                <img src="https://raw.githubusercontent.com/annafy2024/c7-impact-summary/main/anna-profile.jpg" alt="Anna Feichtner" class="hero-image">
+                <div>
+                    <h1>C7 Scope Change</h1>
+                    <p class="subtitle">Anna Feichtner | Solutions Engineer</p>
+                    <p class="period">Q4 2025 - Q1 2026</p>
+                </div>
+            </div>
         </div>
     </div>
 
