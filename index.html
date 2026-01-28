@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C7 Scope Change | Anna Feichtner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px 80px;
+            background: linear-gradient(135deg, #5C6AC4 0%, #004C3F 100%);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        .hero .period {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            font-weight: 300;
+        }
+
+        /* Stats Grid */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 60px 20px;
+            background: #f9fafb;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #5C6AC4;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #6b7280;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Section */
+        section {
+            padding: 80px 20px;
+        }
+
+        section:nth-child(even) {
+            background: #f9fafb;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08), 0 6px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .card-content {
+            font-size: 1rem;
+            color: #4b5563;
+            line-height: 1.7;
+        }
+
+        .card-content ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .card-content li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .card-content li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #5C6AC4;
+            font-weight: 700;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #5C6AC4 0%, #004C3F 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .highlight-box h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Future Section */
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .future-item {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #5C6AC4;
+        }
+
+        .future-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .future-item p {
+            font-size: 0.95rem;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .future-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <h1>C7 Scope Change</h1>
+            <p class="subtitle">Anna Feichtner | Solutions Engineer</p>
+            <p class="period">Q4 2025 - Q1 2026</p>
+        </div>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="stats">
+        <div class="container" style="max-width: 100%;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+                <div class="stat-card">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Successful Launches</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">XX%</span>
+                    <span class="stat-label">Target Achievement</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">XX</span>
+                    <span class="stat-label">SEs Trained</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">XX</span>
+                    <span class="stat-label">Reusable Assets</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Achievements -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Key Achievements</h2>
+            
+            <div class="cards">
+                <!-- Team Enablement -->
+                <div class="card">
+                    <span class="card-icon">🚀</span>
+                    <h3 class="card-title">Team Enablement at Scale</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>Upskilled team on AI tools (Cursor personalization), increasing adoption and creative use cases</li>
+                            <li>Created microsites for internal teams and potential merchant use</li>
+                            <li>Mentored new EMEA SE's, filling timezone gaps in B2B leadership</li>
+                            <li>Built reusable assets for partner SE's, team, and AE's</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Product Influence -->
+                <div class="card">
+                    <span class="card-icon">💡</span>
+                    <h3 class="card-title">Product & Strategic Influence</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>Regular product office hours attendance with systematic field feedback</li>
+                            <li>Connect product with prospects/partners for gray area validation</li>
+                            <li>Share partner-built solutions as prototyping inspiration</li>
+                            <li>Co-creating B2B ICP webinar with PSE for sales org clarity</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Post-Sales Excellence -->
+                <div class="card">
+                    <span class="card-icon">✅</span>
+                    <h3 class="card-title">Post-Sales Excellence</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>5 successful B2B merchant launches (3-6 month cycles)</li>
+                            <li>Trusted advisor when partner expertise limited or absent</li>
+                            <li>100% on-time launch success rate</li>
+                            <li>Full lifecycle SE: Pre-sales win through post-launch success</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Cross-Functional Collaboration -->
+                <div class="card">
+                    <span class="card-icon">🤝</span>
+                    <h3 class="card-title">Cross-Functional Leadership</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>Partnered with Partnerships to scale B2B solutioning externally</li>
+                            <li>Advised Sales Manager Louise on team strategy and coaching needs</li>
+                            <li>Collaborated with PSE on B2B ICP clarity initiative</li>
+                            <li>Connected product, prospects, and partners for feasibility validation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Thought Leadership -->
+                <div class="card">
+                    <span class="card-icon">🎤</span>
+                    <h3 class="card-title">Thought Leadership</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>Spoke at Agritechnica on "Shopify's Take on AI" with partner Basecom</li>
+                            <li>Developing B2B ICP webinar for internal sales enablement</li>
+                            <li>External representation of Shopify B2B + AI capabilities</li>
+                            <li>Building referenceable customer base through launch excellence</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Consistent Performance -->
+                <div class="card">
+                    <span class="card-icon">📈</span>
+                    <h3 class="card-title">Consistent Excellence</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>Consistently exceeded SE targets across Q4 '25 and Q1 '26</li>
+                            <li>Complex enterprise B2B deal leadership</li>
+                            <li>Raised team bar through performance and enablement</li>
+                            <li>Balanced pre-sales excellence with post-sales commitment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- C7 Impact Highlight -->
+    <section style="background: white;">
+        <div class="container">
+            <div class="highlight-box">
+                <h3>C7 Impact: Force Multiplier</h3>
+                <p>
+                    Beyond individual quota achievement, I've demonstrated C7-level impact by scaling team capabilities through AI enablement and mentorship, influencing product strategy through systematic feedback loops and gray area validation, ensuring merchant success through full lifecycle ownership, and driving cross-functional initiatives with Partnerships, Product, and Sales Leadership.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Contributions -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Future C7 Contributions</h2>
+            
+            <div class="future-grid">
+                <div class="future-item">
+                    <h4>Strategic Initiative Ownership</h4>
+                    <p>Own EMEA B2B partner certification or AI-powered discovery framework to scale solutioning capabilities regionally</p>
+                </div>
+
+                <div class="future-item">
+                    <h4>Expanded Thought Leadership</h4>
+                    <p>2-3 external speaking engagements, published case studies, and continued internal enablement programs</p>
+                </div>
+
+                <div class="future-item">
+                    <h4>Product Roadmap Influence</h4>
+                    <p>Document and amplify field-to-product feedback loops with measurable roadmap impact</p>
+                </div>
+
+                <div class="future-item">
+                    <h4>Team Development</h4>
+                    <p>Formalize mentorship programs and create scalable onboarding frameworks for EMEA B2B SEs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Anna Feichtner | Solutions Engineer, B2B EMEA | C7 Scope Change Summary</p>
+        </div>
+    </footer>
+
+</body>
+</html>
